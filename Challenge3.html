@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do-list</title>
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <script>
+      // creation of main elements will be used 
+
+      let container = document.createElement("div");
+      let input = document.createElement("input");
+      let btn = document.createElement("button");
+      let taskContainer = document.createElement("div");
+      let pr = document.createElement("p");
+      let removeBtn = document.createElement("input");
+      
+      removeBtn.type = "submit";
+      removeBtn.value = "Remove";
+
+      btn.innerHTML = "Add Task";
+
+      container.appendChild(input);
+      container.appendChild(btn);
+      document.body.appendChild(container);
+      document.body.appendChild(taskContainer);
+
+   // Styling the elements 
+
+      container.style.cssText = `
+        margin-top : 40px; 
+        margin-left:auto; 
+        margin-right:auto; 
+        width: 50%;
+        padding: 20px; 
+        background-color: #ccc;
+        border-radius: 10px; 
+        display: flex; 
+        justify-content: space-between;
+        `;
+      input.style.cssText = `
+        width: 70%;
+        line-height: 2.5em;
+        border: none;
+        outline:none;
+        border-radius: 5px;
+        padding-left: 10px;
+       `;
+      btn.style.cssText = `
+        line-height: 2em;
+        background-color: red;
+        color:white; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer;
+       `;
+      taskContainer.style.cssText = `
+        margin-top: 20px;
+        margin-left:auto; 
+        margin-right:auto; 
+        width: 50%;
+        padding: 20px; 
+        background-color: #ccc;
+        border-radius: 10px; 
+       `;
+      pr.style.cssText = `
+              position:relative;
+              background-color: white;
+              line-height: 2em;
+              border-radius: 5px;
+              padding-left:10px; 
+              `;
+      removeBtn.style.cssText = `
+              padding: 4px;
+              display: inline-block;
+              position:absolute; 
+              top: 50%;  
+              right: 5px;  
+              transform: translateY(-50%); 
+              background-color: red;
+              color: white;
+              border: none;
+              border-radius: 5px; 
+              cursor: pointer;
+              `;
+
+      // We check if any data from todo list stored in local storage and publishing it         
+
+      if (localStorage.length > 0) {
+        for (let j = 1; j <= 10000; j++) {
+          if (window.localStorage.getItem(j.toString())) {
+            let x = pr.cloneNode();
+            let y = removeBtn.cloneNode();
+
+            x.innerHTML = window.localStorage.getItem(j.toString());
+            x.appendChild(y);
+            taskContainer.appendChild(x);
+
+            y.onclick = function () {
+              x.style.display = "none";
+              window.localStorage.removeItem(j.toString());
+            };
+          }
+        }
+      }
+      
+      // We declare the key value counter will be used once we click to add task 
+      let i = localStorage.length;
+      let counter = "";
+      btn.addEventListener("click", () => {
+        
+        // the input value should not be empty
+        if (input.value !== "") {
+          
+          // In every click we increment i value and store it in counter  
+          ++i;
+          counter = i.toString();
+          
+          let inputValue = input.value;
+          input.value = "";
+          
+        // store the item in local storage
+          
+          window.localStorage.setItem(counter, inputValue);
+          
+          let x = pr.cloneNode();
+          let y = removeBtn.cloneNode();
+          
+          x.innerHTML = window.localStorage.getItem(counter);
+          x.appendChild(y);
+          taskContainer.appendChild(x);
+          
+    // onclick on the remove button we remove the task from the div and from local storage 
+          
+          y.onclick = function () {
+            x.style.display = "none";
+            window.localStorage.removeItem(counter);
+          };
+        }
+      });
+    </script>
+  </body>
+</html>
