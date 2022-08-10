@@ -1,0 +1,131 @@
+* {
+  font-family: sans-serif;
+}
+
+@media (max-width: 768px){
+  .container .input-container, .container #tasks-container {
+     width: 80%;
+  }
+}
+@media (min-width: 769px){
+  .container .input-container, .container #tasks-container {
+     width: 60%;
+  }
+}
+@media (max-width: 480px){
+  .to-do-list {
+    width: 80%;
+  }
+}
+
+body {
+  background-image: url(../images/landing.png);
+  height: 100vh;
+  background-size: cover; 
+}
+
+.container .input-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 10px;
+  /* border: 20px solid transparent; */
+  border-radius: 10px;
+  background-color: white;
+}
+
+.container .input-container #text-input {
+  width: calc(80% - 5px);
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid rgb(227, 74, 28);
+  outline: none;
+}
+
+.container .input-container button {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: rgb(227, 74, 28);
+  color: white;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.container #tasks-container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  background-color: transparent;
+  border-radius: 10px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.container  .delete-all {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  background-color: rgb(227, 74, 28);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.new-tasks {
+  position: relative;
+  width: calc(100% - 20px);
+  padding: 15px;
+  outline: none;
+  margin: 20px 0px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+#tasks-container .new-tasks span .fa-trash-can {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
+  cursor: pointer;
+}
+
+#tasks-container .new-tasks span .fa-check-double {
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(227, 74, 28);
+  cursor: pointer;
+}
+
+.color {
+  background-color: rgb(5, 237, 121);
+}
+
+.date {
+  position: absolute;
+  left: 12px;
+  bottom:0;
+  font-size: 10px;
+  color: rgb(227, 74, 28);
+  border-radius: 5px;
+  margin: 0;
+}
+
+.to-do-list {
+  display:block; 
+  margin-left:auto; 
+  margin-right:auto; 
+  padding: 10px;
+  border-radius: 30px;
+}
